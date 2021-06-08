@@ -1,1 +1,2 @@
-Example site modified from https://github.com/gohugoio/hugoBasicExample
+my site. what else?
+https://otus9051.netlify.app
