@@ -1,0 +1,4 @@
+baseURL = "https://otus9051.netlify.app/"
+languageCode = "en-us"
+title = "Otus9051's Tech Adventures"
+theme = "stack"
