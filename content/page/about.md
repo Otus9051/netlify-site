@@ -1,6 +1,6 @@
 ---
 title: About Otus9051
-description: A student, coder, writer and a profession dumbass
+description: A student, coder, writer and a professional dumbass
 date: '2019-02-28'
 aliases:
   - about-us
