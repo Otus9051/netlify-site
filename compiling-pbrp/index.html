@@ -1,0 +1,155 @@
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Compiling Pitch Black Recovery Project Compiling PBRP isn&amp;rsquo;t that hard if your device is supported. But if it is not, it is still easy provided that you have a good device tree. In this tutorial, we will use a on7xelte a.k.a. SM-G610F.
+YOU NEED TO HAVE LINUX FOR COMPILING. WSL WON&amp;rsquo;T WORK WELL Getting Started  Acquiring Device Tree  As I have an on7xelte, I have a lot of device trees and as PBRP is based on TWRP I will choose this."><title>Compiling Pbrp</title>
+<link rel=canonical href=https://otus9051.netlify.app/compiling-pbrp/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Compiling Pbrp">
+<meta property="og:description" content="Compiling Pitch Black Recovery Project Compiling PBRP isn&amp;rsquo;t that hard if your device is supported. But if it is not, it is still easy provided that you have a good device tree. In this tutorial, we will use a on7xelte a.k.a. SM-G610F.
+YOU NEED TO HAVE LINUX FOR COMPILING. WSL WON&amp;rsquo;T WORK WELL Getting Started  Acquiring Device Tree  As I have an on7xelte, I have a lot of device trees and as PBRP is based on TWRP I will choose this.">
+<meta property="og:url" content="https://otus9051.netlify.app/compiling-pbrp/">
+<meta property="og:site_name" content="Otus9051's Tech Adventures">
+<meta property="og:type" content="article"><meta property="article:section" content><meta property="article:published_time" content="2021-06-07T12:39:05+05:30"><meta property="article:modified_time" content="2021-06-07T12:39:05+05:30">
+<meta name=twitter:title content="Compiling Pbrp">
+<meta name=twitter:description content="Compiling Pitch Black Recovery Project Compiling PBRP isn&amp;rsquo;t that hard if your device is supported. But if it is not, it is still easy provided that you have a good device tree. In this tutorial, we will use a on7xelte a.k.a. SM-G610F.
+YOU NEED TO HAVE LINUX FOR COMPILING. WSL WON&amp;rsquo;T WORK WELL Getting Started  Acquiring Device Tree  As I have an on7xelte, I have a lot of device trees and as PBRP is based on TWRP I will choose this.">
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-2QCPWHM5C0','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+</head>
+<body class="article-page keep-sidebar">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.body.dataset.scheme='dark':document.body.dataset.scheme='light'})()</script><div class="container main-container flex on-phone--column extended">
+<aside class="sidebar left-sidebar sticky">
+<button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box>
+<span class=hamburger-inner></span>
+</span>
+</button>
+<header class=site-info>
+<figure class=site-avatar>
+<img src="https://avatars.githubusercontent.com/u/58171861?s=400&u=8941e822ac370b4b4984a1f5cf18650b6c5ebf61&v=4" width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</figure>
+<h1 class=site-name><a href=https://otus9051.netlify.app>Otus9051's Tech Adventures</a></h1>
+<h2 class=site-description></h2>
+</header>
+<ol class=menu id=main-menu>
+<li>
+<a href=/about-otus9051/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About Otus9051</span>
+</a>
+</li>
+<li>
+<a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span>
+</a>
+</li>
+<li>
+<a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span>
+</a>
+</li>
+<li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span>
+</li>
+</ol>
+</aside>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<h2 class=article-title>
+<a href=/compiling-pbrp/>Compiling Pbrp</a>
+</h2>
+<footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--published>Jun 07, 2021</time>
+</footer></div>
+</header>
+<section class=article-content>
+<h1 id=compiling-pitch-black-recovery-project>Compiling Pitch Black Recovery Project</h1>
+<p>Compiling PBRP isn&rsquo;t that hard if your device is supported. But if it is not, it is still easy provided that you have a good device tree. In this tutorial, we will use a <code>on7xelte</code> a.k.a. <code>SM-G610F</code>.</p>
+<h2 id=you-need-to-have-linux-for-compiling-wsl-wont-work-well>YOU NEED TO HAVE LINUX FOR COMPILING. WSL WON&rsquo;T WORK WELL</h2>
+<h2 id=getting-started>Getting Started</h2>
+<ul>
+<li>Acquiring Device Tree
+<ol>
+<li>As I have an <code>on7xelte</code>, I have <strong>a lot</strong> of device trees and as PBRP is based on TWRP I will choose <a class=link href=https://github.com/samsungexynos7870/android_device_samsung_on7xelte/tree/twrp target=_blank rel=noopener>this</a>.</li>
+</ol>
+</li>
+<li>Getting PBRP sources
+<ol>
+<li>Now this part is pretty easy and the time totally depends on your internet speed. It took me about 10mins in 30MiBPS.</li>
+<li>Make a Work directory. I will be naming it <code>pbrp</code></li>
+<li>To download PBRP sources, <code>cd</code> into the work directory and do</li>
+</ol>
+</li>
+</ul>
+<pre tabindex=0><code>repo init -u git://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-10.0
+</code></pre><p>And do <code>repo sync</code> This will take bit of time to download.</p>
+<h2 id=compiling-pbrp>Compiling PBRP</h2>
+<pre><code>1. Do `source build/envsetup.sh` This will work in ZSH and Bash, but I don't know about other's like FISH or SH. This sets up the commands and requirements for building.
+2. Next up, `cd` to `device` and make a directory with the name of your [OEM](https://en.wikipedia.org/wiki/Original_equipment_manufacturer). For me it's gonna be `samsung`. Then `cd` into that and make another directory with your device codename. For me its `on7xelte`. If you don't know your device's codename, just Google it!
+3. Then clone your dev tree in the folder you just made. 
+4. Do `lunch omni_(your device codename)`
+5. Finally to compile, do `mka recoveryimage`. This will compile PBRP. And after its done, go to WORKDIR/out and get the zip!
+</code></pre>
+<p>Have a nice flash!
+Otus9051</p>
+</section>
+<footer class=article-footer>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>WTFPL 2.0</span>
+</section>
+</footer>
+</article>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2021 -
+2022 Otus9051's Tech Adventures
+</section>
+<section class=powerby>
+uwu <br>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.3.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Otus9051's Tech Adventures</title><link>https://otus9051.netlify.app/</link><description>Recent content on Otus9051's Tech Adventures</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 07 Jun 2021 12:39:05 +0530</lastBuildDate><atom:link href="https://otus9051.netlify.app/index.xml" rel="self" type="application/rss+xml"/><item><title>Compiling PBRP</title><link>https://otus9051.netlify.app/android/pbrp/</link><pubDate>Mon, 07 Jun 2021 12:39:05 +0530</pubDate><guid>https://otus9051.netlify.app/android/pbrp/</guid><description>&lt;h1 id="compiling-pitch-black-recovery-project">Compiling Pitch Black Recovery Project&lt;/h1>
+&lt;p>Compiling PBRP isn&amp;rsquo;t that hard if your device is supported. But if it is not, it is still easy provided that you have a good device tree. In this tutorial, we will use a &lt;code>on7xelte&lt;/code> a.k.a. &lt;code>SM-G610F&lt;/code>.&lt;/p>
+&lt;h2 id="you-need-to-have-linux-for-compiling-wsl-wont-work-well">YOU NEED TO HAVE LINUX FOR COMPILING. WSL WON&amp;rsquo;T WORK WELL&lt;/h2>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;ul>
+&lt;li>Acquiring Device Tree
+&lt;ol>
+&lt;li>As I have an &lt;code>on7xelte&lt;/code>, I have &lt;strong>a lot&lt;/strong> of device trees and as PBRP is based on TWRP I will choose &lt;a class="link" href="https://github.com/samsungexynos7870/android_device_samsung_on7xelte/tree/twrp" target="_blank" rel="noopener"
+>this&lt;/a>.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Getting PBRP sources
+&lt;ol>
+&lt;li>Now this part is pretty easy and the time totally depends on your internet speed. It took me about 10mins in 30MiBPS.&lt;/li>
+&lt;li>Make a Work directory. I will be naming it &lt;code>pbrp&lt;/code>&lt;/li>
+&lt;li>To download PBRP sources, &lt;code>cd&lt;/code> into the work directory and do&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>repo init -u git://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-10.0
+&lt;/code>&lt;/pre>&lt;p>And do &lt;code>repo sync&lt;/code> This will take bit of time to download.&lt;/p>
+&lt;h2 id="compiling-pbrp">Compiling PBRP&lt;/h2>
+&lt;pre>&lt;code>1. Do `source build/envsetup.sh` This will work in ZSH and Bash, but I don't know about other's like FISH or SH. This sets up the commands and requirements for building.
+2. Next up, `cd` to `device` and make a directory with the name of your [OEM](https://en.wikipedia.org/wiki/Original_equipment_manufacturer). For me it's gonna be `samsung`. Then `cd` into that and make another directory with your device codename. For me its `on7xelte`. If you don't know your device's codename, just Google it!
+3. Then clone your dev tree in the folder you just made.
+4. Do `lunch omni_(your device codename)`
+5. Finally to compile, do `mka recoveryimage`. This will compile PBRP. And after its done, go to WORKDIR/out and get the zip!
+&lt;/code>&lt;/pre>
+&lt;p>Have a nice flash!
+Otus9051&lt;/p></description></item></channel></rss>
